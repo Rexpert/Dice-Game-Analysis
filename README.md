@@ -121,9 +121,9 @@ P(\text{Win}) &= P(X_1=5) \\
 ## Probability Analysis
 From a probabilistic perspective, this game is indeed very unfavorable for players. To win, all 5 dice must show the car symbol, and even with two chances, the probability of achieving this is still extremely low. We can look at the specific win rates to illustrate why this game feels somewhat "unfair."
 
-Firstly, the probability of all 5 dice showing the car symbol in the first roll is very low, only about $0.0129\%$. Although the second roll provides an opportunity to increase the win rate slightly, the improvement remains limited. Even if all the dice in the second roll show the car symbol, the probability of a full success is still very small. Our calculations show that the total win probability is around $0.2663\%$.
+Firstly, the probability of all 5 dice showing the car symbol in the first roll is very low, only about $0.0129\\%$. Although the second roll provides an opportunity to increase the win rate slightly, the improvement remains limited. Even if all the dice in the second roll show the car symbol, the probability of a full success is still very small. Our calculations show that the total win probability is around $0.2663\\%$.
 
-In other words, the expected win rate is very low; $0.2663\%$ means that you'd need to play about **375** rounds of this game to expect a single win. Although having two rolls might give players a sense that winning is more fair or "more likely", but the actual increase in probability is very minimal.
+In other words, the expected win rate is very low; $0.2663\\%$ means that you'd need to play about **375** rounds of this game to expect a single win. Although having two rolls might give players a sense that winning is more fair or "more likely", but the actual increase in probability is very minimal.
 
 Additionally, in this game, the chance of failure is quite high. That is, players have nearly a 50% chance of not getting a single successful die even in the first round. Below are the results calculated based on the binomial distribution model:
 ```math
@@ -140,7 +140,7 @@ This demonstrates that, regardless of whether it’s in the first or second roll
 
 In summary, the design of this game makes winning almost impossible. This game could indeed be considered “unfair” as it gives players the impression that winning is just somewhat difficult, while in reality, the probability is extremely low.
 ## Fairness Analysis
-After saying all this, everyone should be able to tell that this game is nearly unplayable. Now, I am starting to wonder: with the same gameplay and conditions, how many rerolls should be given to the player in order to make the game's win rate fair to the player? We can set a $50\%$ win rate as the fair standard for the game.
+After saying all this, everyone should be able to tell that this game is nearly unplayable. Now, I am starting to wonder: with the same gameplay and conditions, how many rerolls should be given to the player in order to make the game's win rate fair to the player? We can set a $50\\%$ win rate as the fair standard for the game.
 
 To simplify the analysis, let's first calculate the probability of a single die roll being successful. Using the probability distribution of the Bernoulli model, if there is only one roll (i.e., $i=1$), the overall win rate will be:
 ```math
@@ -185,7 +185,7 @@ P(\text{Win}_k) &= \dfrac{\dfrac{1}{6}\left(1-\left(\dfrac{5}{6}\right)^{k}\righ
 &= 1-\left(\dfrac{5}{6}\right)^{k}&, \quad k \in \mathbb{Z}^+ 
 \end{aligned}
 ```
-The above gives the expected win rate for a single die when $k$ rolls are allowed. Next, let's calculate how many rerolls should be allowed in the case of five dice, in order to ensure that the success probability is at least $50\%$. 
+The above gives the expected win rate for a single die when $k$ rolls are allowed. Next, let's calculate how many rerolls should be allowed in the case of five dice, in order to ensure that the success probability is at least $50\\%$. 
 ```math
 \begin{align*}
 P(\text{Win}_k) &\ge 0.5 \\
