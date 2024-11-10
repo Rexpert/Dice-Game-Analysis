@@ -35,7 +35,6 @@ P(X=k)={ {\begin{cases}
           p   & {\text{if }}k=1
           \end{cases}}}
 ```
-
 其中，$k$ 表示单次事件的成功或失败，$k=1$ 表示获胜，$k=0$ 表示失败。因此，单颗骰子的概率为：
 ```math
 \begin{array}{r l}
@@ -48,76 +47,63 @@ P(X_2=0|X_1=0)=\frac{5}{6} & \text{第二轮失败的概率}
 
 <kbd><img src="./images/Tree_bernoulli_prob.drawio.png" width=450/></kbd>
 
-
 单颗骰子的总胜率为：
-
-$
+```math
 \begin{aligned}
 P(\text{Win}) &= P(X_1=1) + P(X_2=1 \cap X_1=0) \\
 &= P(X_1=1) + \left[P(X_2=1 \mid X_1=0) \times P(X_1=0)\right] \\
 &= \dfrac{1}{6} + \left[\dfrac{1}{6} \times \dfrac{5}{6}\right] \\
 &= \dfrac{11}{36}
 \end{aligned}
-$
-
+```
 由于每次投掷都是独立事件，因此我们可以直接将5颗骰子的单次胜率相乘，得到总胜率为：
-
-$
+```math
 \begin{aligned}
 P(\text{Win}) &= \left({\dfrac{11}{36}}\right)^5 \\
 &\approx 0.00266
 \end{aligned}
-$
-
+```
 ## 二项分布模型
 实际上，二项分布模型是伯努利模型的扩展，它可以将 $n$ 个独立事件视为试验的总数，其中 $k$ 表示成功事件的总数。概率可以通过二项分布模型计算得到：
 ```math
 P(X=k)={\binom{n}{k}p^{k}(1-p)^{n-k}}
 ```
-
 以下是二项分布模型的概率树图。
 
-<kbd><img src="./images/Tree_binomial.drawio.png" width=450/></kbd>
+<kbd><img src="./images/Tree_binomial.drawio.png"/></kbd>
 
 由于需要算每个概率，这里就只演示算几个案列，
 
 比如在第一轮得到一个成功骰子的概率是：
-
-$
+```math
 \begin{aligned}
 P(X_1=1) &= \dbinom{5}{1} \left(\dfrac{1}{6}\right)^{1} \left(\dfrac{5}{6}\right)^{4} \\
 &= \dfrac{3125}{7776} \\
 &\approx 0.4019
 \end{aligned}
-$
-
+```
 如果在第一轮中得到一个成功的骰子，然后在第二轮重新投掷剩下的4颗骰子，并且这4颗骰子全部成功显示汽车图案：
-
-$
+```math
 \begin{aligned}
 P(X_2=4 \mid X_1=1) &= \dbinom{4}{4} \left(\dfrac{1}{6}\right)^{4} \left(\dfrac{5}{6}\right)^{0} \\
 &= \dfrac{1}{1296} \\
 &\approx 0.0008
 \end{aligned}
-$
-
+```
 那么第一轮中得到一个成功的骰子，并在第二轮内获得四个成功骰子的联合概率是：
-
-$
+```math
 \begin{aligned}
 P(X_2=4 \cap X_1=1) &= P(X_2=4 \mid X_1=1) \times P(X_1=1) \\
 &= \dfrac{3125}{7776} \times \dfrac{1}{1296} \\
 &= \dfrac{3125}{10077696} \\
 &\approx 0.0003
 \end{aligned}
-$
-
-
+```
 其他的计算我已经用 Excel 完成了，请参考以下图片：
 
-<kbd><img src="./images/Excel Works.png" width=450/></kbd>
+<kbd><img src="./images/Excel Works.png"/></kbd>
 
-<kbd><img src="./images/Tree_binomial_prob.drawio.png" width=450/></kbd>
+<kbd><img src="./images/Tree_binomial_prob.drawio.png"/></kbd>
 
 最终，将这两轮里共获得5颗汽车的联合概率与第一轮直接获得5颗汽车的概率相加，得到总胜率。
 ```math
@@ -132,7 +118,6 @@ P(\text{Win}) &= P(X_1=5) \\
 &= 0.002663
 \end{align*}
 ```
-
 ## 概率分析
 从概率上看，这个游戏对玩家确实非常不利。要赢得游戏，5个骰子都必须显示汽车图案，即便有两轮机会，这种情况的概率仍然极低。我们可以通过具体的胜率来解释为什么这个游戏有点“坑”。
 
@@ -151,49 +136,41 @@ P(X_2=0 \mid X_1=1) &\approx 0.4823 \\
 P(X_2=0 \mid X_1=0) &\approx 0.4019
 \end{align*}
 ```
+以上说明，无论是在第一轮还是第二轮的投掷中，未能获得汽车图案的骰子概率都在一半甚至更高，因此失败的风险非常大。
 
-以上说明，无论是在第一轮还是第二轮的投掷中，未能获得汽车图案的骰子概率都在一半甚至更高，因此失败的风险非常大。总结来说，这个游戏的设计使得获胜几乎不可能。可以说，这种游戏确实有“坑人”的嫌疑，因为它让玩家误以为获胜只是有些困难，而实际胜率却极低。
-
+总结来说，这个游戏的设计使得获胜几乎不可能。可以说，这种游戏确实有“坑人”的嫌疑，因为它让玩家误以为获胜只是有些困难，而实际胜率却极低。
 ## 公平性分析
 说了这么多，大家应该都能看出这个游戏实在是几乎无法玩下去。那么我开始好奇，在相同的玩法和条件下，应该给予玩家多少次重掷机会，才能使游戏的胜率对玩家公平呢？我们可以设定 $50\%$ 的胜率作为游戏的公平标准。
 
 为了简化分析，我们首先计算单颗骰子投掷成功的概率。通过伯努利模型的概率分布，如果只有一次投掷机会（即 $i=1$），那么总胜率将会是：
-
-$
+```math
 \begin{aligned}
 P(\text{Win}_1) &= P(X_1=1) \\
 &= \dfrac{1}{6}
 \end{aligned}
-$
-
+```
 如果给予第二次重掷的机会（即 $i=2$），那么总胜率将会是：
-
-$
+```math
 \begin{aligned}
 P(\text{Win}_2) &= P(X_1=1) + P(X_2=1 \cap X_1=0) \\
 &= \dfrac{1}{6} + \left(\dfrac{5}{6} \times \dfrac{1}{6} \right)
 \end{aligned}
-$
-
+```
 如果给予第三次重掷的机会（即 $i=3$），那么总胜率将会是：
-
-$
+```math
 \begin{aligned}
 P(\text{Win}_3) &= P(X_1=1) + P(X_2=1 \cap X_1=0) + P(X_3=1 \cap X_2=0 \cap X_1=0) \\
 &= \dfrac{1}{6} + \left(\dfrac{5}{6} \times \dfrac{1}{6} \right) + \left(\dfrac{5}{6} \times \dfrac{5}{6} \times \dfrac{1}{6} \right) \\
 &= \dfrac{1}{6} + \left(\dfrac{5}{6} \times \dfrac{1}{6} \right) + \left(\left(\dfrac{5}{6}\right)^{2} \times \dfrac{1}{6} \right)
 \end{aligned}
-$
-
+```
 以此类推，如果给予第 $k$ 次重掷的机会（即 $i=k$），那么总胜率将会是：
-
-$
+```math
 \begin{aligned}
 P(\text{Win}_k) &= P(X_1=1) + P(X_2=1 \cap X_1=0) + \dots + P(X_k=1 \cap \dots \cap X_1=0) \\
 &= \dfrac{1}{6} + \left(\dfrac{5}{6} \times \dfrac{1}{6} \right) + \dots + \left(\left(\dfrac{5}{6}\right)^{k-1} \times \dfrac{1}{6} \right)
 \end{aligned}
-$
-
+```
 这个表达式实际上是一个等比数列（Geometric Progression），因此我们可以进一步简化这个算式：
 ```math
 \begin{align*}
@@ -201,16 +178,13 @@ S_n&=a+ar+\dots+ar^{n-1} \\
 &=\dfrac{a(1-r^{n})}{1-r} & , \quad r \neq 1 \text{ and } r<1
 \end{align*}
 ```
-
 根据我们的算式，首项 $a=\frac{1}{6}$，公比 $r=\frac{5}{6}$，且项数 $n=k$。将这些变量代入等比数列的求和公式中，我们得出：
-
-$
+```math
 \begin{aligned}
 P(\text{Win}_k) &= \dfrac{\dfrac{1}{6}\left(1-\left(\dfrac{5}{6}\right)^{k}\right)}{1-\dfrac{5}{6}} \\
 &= 1-\left(\dfrac{5}{6}\right)^{k}&, \quad k \in \mathbb{Z}^+ 
 \end{aligned}
-$
-
+```
 以上是单颗骰子在允许投掷 $k$ 次的期望胜率。接下来，让我们来计算，在五颗骰子的情况下，应该允许多少次重掷，才能使成功概率至少达到 $50\%$。
 ```math
 \begin{align*}
@@ -223,13 +197,12 @@ k &\ge 11.2135 \\
 k & = 12
 \end{align*}
 ```
-
 由此可见，只有当玩家被给予至少 **12** 次重掷机会时，成功概率才能超过一半，游戏才对玩家公平。以下图表展示了在不同骰子数量（1到5个骰子，记作 $x$）下，通过给予 $k$ 次重掷机会，所期望的胜率。
 ```math
 f(x,k)=\left(1-\left(\dfrac{5}{6}\right)^{k}\right)^{x}
 ```
 
-<kbd><img src="./images/Excel Diagram.png" width=450/></kbd>
+<kbd><img src="./images/Excel Diagram.png"/></kbd>
 
 ## 总结
 通过分析，我们发现该游戏要求玩家在两轮内掷出五颗显示汽车图案的骰子，成功概率极低，仅约为0.2663%。尽管设置了两轮重掷机会，但对胜率的提升作用微乎其微。表面上看，该设计似乎增加了玩家的获胜机会，但实际上胜率仍然非常低。若要实现对玩家更公平的游戏体验，则需要将重掷次数增加到至少12次。
