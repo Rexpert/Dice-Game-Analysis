@@ -6,7 +6,7 @@
 - [Binomial Model](#binomial-model)
 - [Probability Analysis](#probability-analysis)
 - [Fairness Analysis](#fairness-analysis)
-- [Concludion](#conclusion)
+- [Conclusion](#conclusion)
 - [Chinese Version (中文版本)](README_CN.md)
 
 ## Introduction
