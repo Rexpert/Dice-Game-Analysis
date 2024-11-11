@@ -208,3 +208,5 @@ f(x,k)=\left(1-\left(\dfrac{5}{6}\right)^{k}\right)^{x}
 Our analysis reveals that the probability of winning this game, which requires players to roll five dice to show car symbols within two rounds, is extremely low—approximately 0.2663%. Although two re-roll opportunities are provided, their effect on the win rate is minimal. While the design appears to increase the player's chances, the actual probability of winning remains very low. For a fairer gaming experience, the number of re-rolls would need to be increased to at least 12.
 
 Of course, as the game carries a degree of gambling risk, the organizers are unlikely to raise the win probability to a fair level for players. Whether you want to try your luck is entirely up to you. This analysis is purely for academic discussion and does not constitute any advice; the author assumes no responsibility for any outcomes resulting from it. Any questions or suggestions are welcome — please feel free to open an issue for further discussion.
+
+MIT [@Rexpert](https://github.com/Rexpert) 2024
